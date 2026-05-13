@@ -8678,6 +8678,11 @@ document.querySelectorAll('.toc-toggle').forEach(btn => {
 
 <script>
 (function() {
+  // Force drill-downs and sources collapsed on initial page load
+  document.querySelectorAll('details.drill, details.sources-footer, details.toc-drills').forEach(function(d) {
+    d.removeAttribute('open');
+  });
+
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href^=&quot;#&quot;]');
     if (!link) return;
