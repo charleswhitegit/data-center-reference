@@ -1,6 +1,6 @@
 # Data Center Reference
 
-Private research reference. Access via GitHub Pages: https://YOUR-USERNAME.github.io/REPO-NAME/
+Private research reference. Access via GitHub Pages: https://charleswhitegit.github.io/data-center-reference/
 
 The page is configured with `noindex` so search engines should not surface it. Anyone with the direct link can still view it - this is not a true privacy boundary.
 
