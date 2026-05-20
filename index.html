@@ -1905,6 +1905,25 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 </ul>
 </div>
 
+<h3>2a. Bloom Energy Architectural Fit with 800V DC</h3>
+<p>Among the primary power options above, Bloom Energy is the only major technology that produces 800V DC at the source. Every other primary power option (gas turbines, reciprocating engines, fuel cells from competing chemistries) produces AC and requires conversion stages to reach the 800V DC architecture. The architectural fit is structural, not marketing.</p>
+
+<table>
+<tr><th>Attribute</th><th>Detail</th></tr>
+<tr class=&quot;gen&quot;><td>Technology</td><td>Solid oxide fuel cell (SOFC); described as &quot;a big refrigerator that can be stacked up&quot;</td></tr>
+<tr class=&quot;gen&quot;><td>Native output</td><td>DC power (natively 800V DC at the source)</td></tr>
+<tr class=&quot;gen&quot;><td>Combustion</td><td>Does not combust; lower NOx, SOx, less water required than turbine equivalents; easier permitting</td></tr>
+<tr class=&quot;gen&quot;><td>Power density</td><td>~100 MW per acre footprint</td></tr>
+<tr class=&quot;gen&quot;><td>Load following</td><td>Inherent load following capability (SOFC stack ramps with demand without secondary control loop)</td></tr>
+<tr class=&quot;gen&quot;><td>Feedstock</td><td>~99% natural gas today; other feedstocks possible (biogas, hydrogen blends)</td></tr>
+<tr class=&quot;gen&quot;><td>800V DC architecture fit</td><td>Strong; eliminates conversion stages that would otherwise be needed</td></tr>
+<tr class=&quot;gen&quot;><td>Competing primary power source</td><td>GE Vernova CCGT plus electrification: AC output requiring conversion via transformers / SSTs</td></tr>
+</table>
+
+<div class=&quot;callout&quot;>
+<b>Why this matters for the supply chain map.</b> Native DC output eliminates the AC-DC rectification stage that would otherwise be required between primary power source and the 800V DC bus. This is a structural architectural advantage that maps directly into the three-wave AC-DC elimination framework (Section B.10d). The trade-off: SOFC technology is supplier-concentrated (Bloom is the only major player at hyperscale-relevant scale today), which limits multi-sourcing options for hyperscalers running all-of-the-above procurement strategies.
+</div>
+
 <!-- =========== 3. PLANT-TO-GRID =========== -->
 <h2 id=&quot;section-a-h2-03-3-the-plant-switchyard-how-generation-re&quot;>3. The Plant Switchyard: How Generation Reaches the Wire</h2>
 <p>Every plant has a switchyard at its boundary. This is where generator voltage (typically 10-30 kV) is stepped up to transmission voltage and where the plant interfaces with the grid's protection scheme.</p>
@@ -2018,6 +2037,10 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 
 <div class=&quot;callout&quot;>
 <b>Hybrid GIS</b> combines gas-insulated bays for the critical functions (breakers, disconnects) with air-insulated busbars. Reduces SF6 inventory while retaining most footprint savings. Increasingly common in datacenter substations.
+</div>
+
+<div class=&quot;callout&quot;>
+<b>GE Vernova HV-to-MV strategic shift (May 2026 disclosure).</b> Historically GEV's power equipment business has been concentrated at high voltage (765 kV to 230 kV transmission-grade transformers and substations). The disclosed strategic shift moves the company toward medium voltage (13.8 kV class) to <b>get physically closer to the data center</b>. SST (solid-state transformer) work is part of this same strategic move: SSTs let GEV convert at the MV level rather than depending on traditional copper-wound HV transformers. Implications for the supply chain: traditional MV transformer specialists (Hitachi Energy, Hammond Power Solutions, the broader Indian MV transformer cluster) now face a Tier 1 incumbent moving into their territory, while HV-only specialists (Mitsubishi Electric, Toshiba) may lose share if SSTs reduce HV transformer demand at hyperscale sites.
 </div>
 
 <!-- =========== 6. INTERCONNECTION PROCESS =========== -->
@@ -2741,12 +2764,14 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 </ul>
 
 <h3>10c. Component Ecosystem (NVIDIA 800V partners)</h3>
-<p>NVIDIA announced its official 800V DC ecosystem partners at OCP Global Summit October 2025. The silicon partner list spans 14 companies covering SiC MOSFETs, GaN FETs, multi-phase controllers, DrMOS, and adjacent power semi categories.</p>
+<p>NVIDIA announced its official 800V DC ecosystem partners at OCP Global Summit October 2025. The silicon partner list spans 14 companies covering SiC MOSFETs, GaN FETs, multi-phase controllers, DrMOS, and adjacent power semi categories. The broader ecosystem adds power-system component, datacenter power-system, and interconnect vendors.</p>
 <ul>
 <li><b>Silicon providers (14)</b>: Analog Devices (ADI), Alpha &amp;amp; Omega Semiconductor (AOSL), Efficient Power Conversion (EPC, private), Infineon Technologies (IFX), Innoscience (Chinese), Monolithic Power Systems (MPWR), Navitas Semiconductor (NVTS), ON Semiconductor (ON), Power Integrations (POWI), Renesas Electronics (6723.T), Richtek Technology (Taiwanese, MediaTek subsidiary), ROHM Semiconductor (6963.T), STMicroelectronics (STM), Texas Instruments (TXN)</li>
-<li><b>Power system components</b>: Delta Electronics (2308.TW), Flex Power, Lead Wealth, LiteOn, Megmeet</li>
-<li><b>Datacenter power systems</b>: Eaton (ETN), Schneider Electric (SU.PA), Vertiv (VRT)</li>
+<li><b>Power system components</b>: Delta Electronics (2308.TW), Flex (FLEX), Lead Wealth, LiteOn, Megmeet</li>
+<li><b>Datacenter power systems</b>: ABB (ABBN.SW), Eaton (ETN), GE Vernova (GEV), Hitachi (6501.T), Mitsubishi Electric (6503.T), Schneider Electric (SU.PA), Siemens (SIE.DE), Vertiv (VRT)</li>
+<li><b>Interconnect / cabling</b>: BizLink (Taiwanese 3665.TW), Heron (private)</li>
 </ul>
+<p class=&quot;ref&quot;>Note: categorization above groups partners by function for supply chain mapping consistency; the source disclosure (Baird webcast, May 2026) presents these in a slightly different organization.</p>
 
 <div class=&quot;verify&quot;>
 <b>Verified 800V DC timeline:</b>
@@ -2759,6 +2784,29 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 <li>UL 98B was extended to 2 kV (utility solar context) in July 2025, but native UL data-center 800V topology standards are still in active development.</li>
 <li>OCP Diablo 400 spec defines output: +400 to common = +410V DC at no load, +400V DC +/-0.5% at full load. Mirror for negative rail. 800V derived from rail-to-rail.</li>
 </ul>
+</div>
+
+<h3>10d. The Three-Wave 800V Architecture Transition (2026-2028)</h3>
+<p>The 800V transition does not happen in one step. It unfolds across three NVIDIA platform generations, each of which changes a different conversion stage. Wave 1 (Vera Rubin, late 2026) changes the AC-DC conversion. Wave 2 (Vera Rubin Ultra / Kyber, mid 2027) moves DC-DC conversion inside the rack and introduces GaN. Wave 3 (Feynman, 2028) eliminates AC-DC inside the datacenter entirely via solid-state transformer. Each wave defines a different supply chain.</p>
+
+<table>
+<tr><th>Dimension</th><th>Wave 1 (Vera Rubin)</th><th>Wave 2 (Vera Rubin Ultra / Kyber)</th><th>Wave 3 (Feynman)</th></tr>
+<tr><td><b>Timing</b></td><td>Late 2026 / early 2027</td><td>2H 2027</td><td>2028</td></tr>
+<tr><td><b>Rack architecture</b></td><td>800V rack with 50V IT rack</td><td>800V-native server, megawatt racks</td><td>SST feeds 800V DC directly from MV grid</td></tr>
+<tr><td><b>AC-DC conversion</b></td><td>Migrates from Si to 100% SiC; +50% content per rack</td><td>SiC (higher voltage)</td><td>Eliminated inside DC; PSUs disappear</td></tr>
+<tr><td><b>DC-DC conversion</b></td><td>Silicon-based, PSU still on top of rack</td><td>Moves inside rack, directly above GPU; GaN appears for first time</td><td>100% GaN</td></tr>
+<tr><td><b>SiC / GaN mix</b></td><td>SiC-only (in AC-DC stage)</td><td>SiC/GaN approximately 50/50</td><td>3.3 kV class SiC (for SST) + 100% GaN (DC-DC)</td></tr>
+<tr><td><b>Conversion stages eliminated</b></td><td>1 AC stage out, 1 DC stage in; efficiency to ~90%</td><td>Significant simplification of intermediate stages</td><td>PSUs eliminated entirely; SST handles grid-to-800V; efficiency >90% (SST itself ~98%)</td></tr>
+<tr><td><b>Material savings</b></td><td>Begins copper reduction</td><td>Continues</td><td>Hundreds of pounds of copper cable eliminated per DC; ~13x bus bar weight reduction</td></tr>
+<tr><td><b>Supply universe</b></td><td>Established SiC suppliers + AC-DC PSU vendors (Delta, Flex)</td><td>SiC + GaN suppliers; DC-DC moves to multi-source</td><td><b>Very narrow</b>: only suppliers with ultra-high-voltage SiC (3.3 kV) + high-voltage GaN qualify. Wolfspeed (SiC only), Infineon, Navitas all have both classes; vertical GaN entrants locked out (2-3 years from commercialization, too late for 2028)</td></tr>
+</table>
+
+<div class=&quot;callout&quot;>
+<b>Why this matters for supply chain mapping.</b> Each wave defines its own winning supplier set. The Wave 1 supply chain (SiC AC-DC) overlaps significantly with auto/industrial SiC suppliers. The Wave 2 supply chain (GaN DC-DC, inside-rack VRMs) overlaps with the OpenVReg ecosystem covered in Section D.3d. The Wave 3 supply chain (3.3 kV class SiC for SST + 100% GaN) is the narrowest: only suppliers with both ultra-high-voltage SiC and high-voltage GaN qualify. NVIDIA's published 800V ecosystem partner list (Section 10c above) reads differently when filtered by which wave each partner is positioned for.
+</div>
+
+<div class=&quot;verify&quot;>
+<b>Vertical GaN timing note (May 2026):</b> Vertical GaN (the next-generation GaN device structure that would allow higher voltage capability at lower cost) is primarily still in the lab. Commercialization is estimated 2-3 years out, which is too late for Feynman (2028) qualification. This locks out potential late entrants from the Wave 3 supply universe.
 </div>
 
 <!-- ============ 11. TIER RATINGS ============ -->
@@ -2775,6 +2823,36 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 
 <div class=&quot;callout&quot;>
 <b>Note on Uptime Institute Tiers.</b> Since 2009 the Tier spec has moved away from naming downtime targets and toward defining topology and functional outcomes (redundancy, concurrent maintainability, fault tolerance). The downtime numbers above are widely-cited approximations, not formal Uptime Institute specifications.
+</div>
+
+<h3>11a. Five Backup Power Architectures in Real-World Use</h3>
+<p>The Tier I-IV framework above tells you the redundancy model and downtime tolerance. It does not tell you what specific equipment combinations are actually being deployed. Five distinct backup architectures exist in the field, with very different diesel content profiles. Four of the five retain meaningful diesel content; only one is fully diesel-free, and it has no confirmed real-world deployment.</p>
+
+<table>
+<tr><th>#</th><th>Architecture</th><th>Deployment Status</th><th>Diesel Content</th><th>Named Real-World Examples</th></tr>
+<tr class=&quot;ups&quot;><td>1</td><td>Grid prime + diesel backup (traditional 2N)</td><td>Dominant</td><td>High</td><td>All hyperscale colo; most production cloud (AWS, Azure, GCP general workloads)</td></tr>
+<tr class=&quot;ups&quot;><td>2</td><td>Onsite gas prime + BESS smoothing + diesel backup</td><td>Dominant (emerging)</td><td>High</td><td><b>xAI Colossus</b> (Memphis), <b>Vantage</b>, <b>Voltagrid</b>, <b>Meta New Albany</b></td></tr>
+<tr class=&quot;ups&quot;><td>3</td><td>Onsite gas prime + BESS smoothing + minimal diesel</td><td>Edge cases (mostly AI training)</td><td>Medium</td><td><b>Joule / CAT Utah</b></td></tr>
+<tr class=&quot;ups&quot;><td>4</td><td>Grid prime + gas turbine backup (no diesel farm)</td><td>Emerging</td><td>Medium</td><td><b>Crusoe Abilene Stargate 1</b></td></tr>
+<tr class=&quot;ups&quot;><td>5</td><td>Pure dual-fuel turbines + BESS (no diesel of any kind)</td><td>Theoretical only</td><td>None</td><td>No confirmed implementation</td></tr>
+</table>
+
+<div class=&quot;callout&quot;>
+<b>Why the &quot;diesel killer&quot; architecture (5) rarely gets built.</b> BESS supersizing math: a BESS capable of covering the gas-to-diesel fuel transfer at full load (several minutes of switching lag) plus 800V smoothing pushes capital cost above $2 million per MW. That is roughly 2x a diesel backup solution at the same MW. An 8-hour outage covered entirely by battery would cost 4 to 6 times the capex of an equivalent diesel genset solution. The math gets worse, not better, as outage duration extends.
+</div>
+
+<table>
+<tr><th>Tier</th><th>Typical Operator Mix</th><th>Genset Implications</th></tr>
+<tr class=&quot;tier&quot;><td>Tier IV</td><td>Colo (Equinix, Digital Realty), Financial Services, Healthcare, Government</td><td>Genset content per IT MW is high. Full 2N with diesel plus UPS remains the default. Cost of downtime: loss of life (government/healthcare) or millions per minute (finance). Tier IV is a non-optional regulatory ceiling, not a cost-benefit calculation.</td></tr>
+<tr class=&quot;tier&quot;><td>Tier III</td><td>Most public cloud and hyperscale (AWS et al.) general workloads</td><td>Genset content lower but still required for audit / insurance risk mitigation.</td></tr>
+<tr class=&quot;tier&quot;><td>Tier I and II</td><td>AI training facilities (almost universally not pursuing Tier IV certification)</td><td>Training workloads are checkpoint-tolerant. Downtime measured in lost training hours, not dollars or safety. This is the only tier where genset displacement is theoretically viable.</td></tr>
+</table>
+
+<h3>11b. EPA &quot;Emergency Standby&quot; Permit Bucket: Why Diesel Stays</h3>
+<p>Under EPA classification, diesel gensets installed for emergency standby use are granted a permit bucket allowing up to <b>100 hours per year</b> of non-emergency runtime (testing, peak shaving, demand response) without triggering a continuous-operation air permit. Reclassifying the same MW capacity into a dual-fuel turbine pulls it into a different regulatory regime with substantially more restrictive permitting requirements. For Tier III/IV operators, this regulatory boundary is one of the dominant reasons diesel genset content has not eroded despite repeated narrative shifts predicting it would.</p>
+
+<div class=&quot;callout&quot;>
+<b>Regulatory framing matters as much as technology.</b> &quot;Sometimes avoiding paperwork is as important as being able to build the data center itself.&quot; A 50 MW dual-fuel turbine and a parallel array of 25x 2 MW diesel gensets can deliver the same backup capacity, but the diesel array fits inside Emergency Standby permitting while the turbine does not. For sites where speed-to-permit is the binding constraint (most hyperscale builds in the US), diesel content is structurally protected by this regulatory boundary independent of any technology comparison.
 </div>
 
 <!-- ============ 12. PHYSICS BOTTLENECK ============ -->
@@ -2806,6 +2884,23 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 <tr class=&quot;ups&quot;><td>Fuel cells</td><td>SOFC or PEM. Already covered in Section A as primary. Functions as backup too.</td><td>Native DC output aligns with 800V DC architectures.</td></tr>
 <tr class=&quot;ups&quot;><td>Battery energy storage (BESS)</td><td>Large lithium banks (MWh class) for short-duration ride-through and peak shaving.</td><td>Sometimes replaces UPS batteries and bridges to generator start.</td></tr>
 </table>
+
+<h3>13a. HVO Renewable Diesel: Why Emissions Pressure Does Not Eliminate Gensets</h3>
+<p>The popular narrative says rising emissions pressure on data center diesel gensets will force a transition to battery-only or gas-only backup. The actual industry response is different: switching the fuel inside the existing diesel genset, not switching the equipment. HVO (Hydrotreated Vegetable Oil) renewable diesel is a drop-in replacement that requires no engine modifications and delivers 85-90% lifecycle CO2 reduction. Caterpillar has been running HVO at Microsoft Azure data centers in Sweden, where cold-flow performance also matters.</p>
+
+<table>
+<tr><th>Dimension</th><th>Petroleum Diesel</th><th>Biodiesel (B100)</th><th>HVO Renewable Diesel</th><th>Notes</th></tr>
+<tr class=&quot;ups&quot;><td>Lifecycle CO2</td><td>Baseline</td><td>-74%</td><td>-85% to -90%</td><td>Headline sustainability win for HVO</td></tr>
+<tr class=&quot;ups&quot;><td>NOx (engine-out)</td><td>Baseline</td><td>Slightly higher</td><td>Similar to diesel</td><td>All compliant after SCR</td></tr>
+<tr class=&quot;ups&quot;><td>Particulates / soot</td><td>Baseline</td><td>Lower</td><td>Substantially lower</td><td>Lower visible smoke</td></tr>
+<tr class=&quot;ups&quot;><td>Shelf life</td><td>~1 year</td><td>6-12 months</td><td><b>Up to 10 years</b></td><td><b>10x advantage for HVO</b>; matters for data center reserve fuel</td></tr>
+<tr class=&quot;ups&quot;><td>Cold flow (gel point)</td><td>Down to ~-7°C</td><td>Gels at higher temps</td><td>Down to -32°C</td><td>Critical for cold-climate sites (Nordic, Canada)</td></tr>
+<tr class=&quot;ups&quot;><td>Engine compatibility</td><td>OK</td><td>B100 may degrade seals</td><td><b>Drop-in; no engine mods</b></td><td><b>Zero capex to switch</b></td></tr>
+</table>
+
+<div class=&quot;callout&quot;>
+<b>Why this matters for the supply chain map.</b> HVO decouples the &quot;diesel ESG problem&quot; from the diesel genset equipment thesis entirely. The genset OEMs (Caterpillar, Cummins, Kohler, MTU) do not need to redesign equipment; the fuel supply chain (biodiesel refiners, renewable diesel producers like Neste, Diamond Green Diesel, Phillips 66) becomes the new bottleneck. Microsoft Azure Sweden is a verified deployment. This is also why the Tier III/IV genset content per IT MW is structurally durable rather than at-risk: the emissions problem has a fuel-side solution, not an equipment-side solution.
+</div>
 
 <!-- ============ 14. SUMMARY ============ -->
 <h2 id=&quot;section-b-h2-14-14-section-b-in-numbers&quot;>14. Section B in Numbers</h2>
@@ -3249,6 +3344,19 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 
 <div class=&quot;callout&quot;>
 <b>A practical example.</b> An SST at MV AC entry uses SiC MOSFETs in the 1.7 kV class for the cascaded H-bridge. The DAB isolation stage may use SiC or GaN depending on switching frequency target. The rack-internal 800V-to-48V LLC converter uses 650 V or 900 V GaN at MHz switching for power density. The final 48V-to-0.65V VRM under the GPU is often still silicon, with GaN inroads. Four different materials decisions, one chain.
+</div>
+
+<h3>5c. GaN and SiC Data Center TAM (2025 vs 2030)</h3>
+<p>Market sizing anchors the supply chain transition described in Section B.10d. Two distinct base rates apply: GaN starts from a small base and grows fastest; SiC starts from a much larger EV-driven base and grows more slowly in percentage terms, but the data center slice grows from negligible to material.</p>
+
+<table>
+<tr><th>Material</th><th>Total TAM 2025</th><th>Total TAM 2030</th><th>Data Center Slice 2030</th><th>Largest End Market 2030</th><th>5Y CAGR (total)</th></tr>
+<tr><td><b>GaN (power devices)</b></td><td>~$550M</td><td>$3.6B to $4.7B</td><td><b>$1B to $2.1B</b> (the single largest contributor)</td><td>Data center</td><td>45% to 55%</td></tr>
+<tr><td><b>SiC (power devices)</b></td><td>~$5.7B</td><td>~$10B+ (extrapolated)</td><td><b>$1.1B</b> (growing from negligible)</td><td>EV (~$5B in 2030)</td><td>Data center slice ~40%</td></tr>
+</table>
+
+<div class=&quot;callout&quot;>
+<b>Why this matters for the supply chain map.</b> Two implications. First, the GaN supply chain is structurally smaller than the SiC supply chain (less than half the 2030 dollar TAM), so concentration risk in GaN is higher: a small number of GaN suppliers (Navitas, Infineon, EPC, Innoscience) carry a disproportionate share. Second, the SiC supply chain has alternative demand sources (EV remains the largest) that provide a structural floor even if data center growth disappoints; the GaN supply chain has less of this hedge because data center is becoming the dominant end market by 2030.
 </div>
 
 <!-- ============ 6. PROTECTION ============ -->
@@ -9734,6 +9842,11 @@ Sources and methodology notes: Per-rack pricing from HSBC analyst estimates (May
 
 <script>
 (function() {
+  // Force drill-downs and sources collapsed on initial page load
+  document.querySelectorAll('details.drill, details.sources-footer, details.toc-drills').forEach(function(d) {
+    d.removeAttribute('open');
+  });
+
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href^=&quot;#&quot;]');
     if (!link) return;
@@ -10660,6 +10773,11 @@ Sources: project files (Damnang AI Datacenter Power Investment Map, Nutty AI Pow
 
 <script>
 (function() {
+  // Force drill-downs and sources collapsed on initial page load
+  document.querySelectorAll('details.drill, details.sources-footer, details.toc-drills').forEach(function(d) {
+    d.removeAttribute('open');
+  });
+
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href^=&quot;#&quot;]');
     if (!link) return;
@@ -11557,7 +11675,7 @@ Sources: project files (Damnang AI Datacenter Power Investment Map, Nutty AI Pow
 <tr><td class=&quot;rk&quot;>2</td><td><b>MSA Safety (MSA)</b></td><td class=&quot;num&quot;>~$6B</td><td>Gas detection + leak detection + clean-agent fire suppression; embedded in every cooling loop leak detection and clean-agent installation</td><td>&quot;Industrial safety&quot; framing keeps it off AI screens; mining + petrochem revenue dominates narrative; DC content invisible inside</td><td>Liquid cooling deployment requires leak detection per code; clean-agent fire suppression for electrical rooms; every CDU and switchgear has MSA-class instrumentation</td><td>Sensor + fire detection $30-50M per 100 MW DC; if MSA captures 10-20% of incremental: $150-300M annual at $1.8B revenue base = 8-17% revenue impact</td></tr>
 
 <tr><td class=&quot;rk&quot;>3</td><td><b>Regal Rexnord (RRX)</b></td><td class=&quot;num&quot;>~$10B</td><td>Marathon alternators (inside every generator and turbine); large-frame industrial motors and e-pod modular drives; couplings and power transmission; cross-cutting Tier 2 exposure through multiple Tier 1 systems</td><td>Industrial cyclical narrative dominates investor view; Altra acquisition integration absorbing analyst attention; DC end-market exposure split across multiple business segments making consolidated growth hard to isolate</td><td>Motor capacity tight across all incumbents (Nidec, ABB, Siemens, WEG); Marathon alternator duopoly with Cummins-internal; e-pods are direct hyperscaler procurement bypassing OEM intermediaries</td><td>Motors $30-75M + alternators + transmission = combined socket $50-100M per 100 MW DC; if 10-15% share captured × 50 DCs/yr = $250-750M annual incremental at $6B revenue base = 4-12% revenue impact</td></tr>
-<tr><td class=&quot;rk&quot;>4</td><td><b>BorgWarner (BWA)</b></td><td class=&quot;num&quot;>~$8B</td><td>TurboCell modular gas turbines (2-30 MW range); legacy turbocharger and air management business with portable rotating-equipment expertise</td><td>Auto cyclical stock view dominates; TurboCell DC product line is recent and not yet a material segment in financial disclosures; auto headwinds absorb analyst attention; gas turbine pivot is buried inside broader portfolio</td><td>GE Vernova, Siemens Energy, MHI all reservation-bound through 2028; modular alternatives become essential for sub-30 MW frames; 2 GW commitment from 2027 fills a specific capacity gap</td><td>Gas turbine pool $80-180M per 100 MW DC (largest single discretionary $); if 5-10% share captured × 50 DCs/yr = $200-900M annual incremental at $14B revenue base = 1-6% revenue impact (less asymmetric due to larger cap but materially additive)</td></tr>
+<tr><td class=&quot;rk&quot;>4</td><td><b>BorgWarner (BWA)</b></td><td class=&quot;num&quot;>~$8B</td><td>TurboCell modular gas turbines (2-30 MW range); legacy turbocharger and air management business with portable rotating-equipment expertise; <b>plus ~3 GWh installed US EV commercial vehicle battery pack capacity redeploying to BESS</b> (packs are cell-chemistry and form-factor agnostic with in-house BMS; UL certification in process; <b>2027 SOP is the near-term DC inflection</b>)</td><td>Auto cyclical stock view dominates; TurboCell DC product line is recent and not yet a material segment in financial disclosures; auto headwinds absorb analyst attention; gas turbine pivot is buried inside broader portfolio; the EV battery capacity redeployment to BESS is buried even deeper</td><td>GE Vernova, Siemens Energy, MHI all reservation-bound through 2028; modular alternatives become essential for sub-30 MW frames; 2 GW commitment from 2027 fills a specific capacity gap; BESS demand from 800V data center ride-through (per Section B.11) creates a second independent socket</td><td>Gas turbine pool $80-180M per 100 MW DC (largest single discretionary $); BESS pool incremental on top; if 5-10% share captured × 50 DCs/yr = $200-900M annual incremental at $14B revenue base = 1-6% revenue impact (less asymmetric due to larger cap but materially additive across two sockets)</td></tr>
 <tr><td class=&quot;rk&quot;>5</td><td><b>ESCO Technologies (ESE)</b></td><td class=&quot;num&quot;>~$3.5B (post-Megger deal will be larger)</td><td>Doble Engineering electrical asset testing + diagnostic equipment for transformers, switchgear, breakers, relays; just acquired Megger for $2.35B (April 2026) creating unified electrical testing platform; A&amp;D segment has high-performance hydraulic filtration + precision valves</td><td>Stock view is &quot;utility test equipment&quot; with renewable energy tailwind; DC substation buildout exposure not understood; A&amp;D defense narrative further hides it</td><td>Every new substation + every transformer commission + every breaker test requires Doble/Megger testing; transformer shortage + grid buildout = installed base growth = recurring service revenue compounding</td><td>$1-3M direct testing equipment per 100 MW DC + recurring services; if hyperscaler buildout doubles substation testing demand = material segment growth at high-margin services</td></tr>
 
 <tr><td class=&quot;rk&quot;>6</td><td><b>Flowserve (FLS)</b></td><td class=&quot;num&quot;>~$8B</td><td>Industrial pumps for cooling loops, immersion cooling, fuel, and makeup water; BW Seals mechanical seals adjacent</td><td>Industrial pump narrative dominated by energy and petrochem end markets; rotating equipment is unglamorous category; BW Seals revenue is segment-buried</td><td>Grundfos allocation; Xylem/ITT/IDEX positioned but also growing fast; hyperscalers building parallel pump qualification programs; immersion cooling deployments need specialty pumps</td><td>Pump pool $15-40M per 100 MW DC + seal aftermarket; if 15-20% share captured × 50 DCs/yr = $150-400M annual incremental at $4.5B revenue base = 3-9% revenue impact</td></tr>
@@ -11587,7 +11705,7 @@ Sources: project files (Damnang AI Datacenter Power Investment Map, Nutty AI Pow
 
 <tr><td class=&quot;rk&quot;>17</td><td><b>Curtiss-Wright (CW)</b></td><td class=&quot;num&quot;>~$15B</td><td>Industrial valves (nuclear-grade) + mission-critical electronics + sensors</td><td>Defense + nuclear narrative; industrial valves portable to mission-critical DC where reliability matters</td></tr>
 
-<tr><td class=&quot;rk&quot;>18</td><td><b>Methode Electronics (MEI)</b></td><td class=&quot;num&quot;>~$0.3B</td><td>Power distribution components (busbar, EMI) + interconnect + auto electrical heritage</td><td>Tiny cap; auto cyclical drag; recent management changes</td></tr>
+<tr><td class=&quot;rk&quot;>18</td><td><b>Methode Electronics (MEI)</b></td><td class=&quot;num&quot;>~$0.3B</td><td>Power distribution components (busbar, EMI) + interconnect + auto electrical heritage; <b>Mexico busbar capacity originally built for EV programs that dramatically underperformed</b>, now redirecting to data center busbar applications for 800V DC distribution; data center ~10% of sales for a ~$1B revenue company; turnaround with asymmetric optionality</td><td>Tiny cap; auto cyclical drag; recent management changes</td></tr>
 
 <tr><td class=&quot;rk&quot;>19</td><td><b>RBC Bearings (RBC)</b></td><td class=&quot;num&quot;>~$8B</td><td>High-precision bearings; aerospace + industrial; aftermarket compounding</td><td>Aerospace narrative dominates; industrial bearings + aftermarket recurring revenue compound as DC installed base grows</td></tr>
 
@@ -11640,6 +11758,7 @@ Sources: project files (Damnang AI Datacenter Power Investment Map, Nutty AI Pow
 <h3 id=&quot;p-spec&quot;>5.5 Speculative Watch List (Real Capability, Unproven DC Pivot)</h3>
 <table>
 <tr><th>Company</th><th>Speculative thesis</th></tr>
+<tr><td><b>Sensata Technologies (ST)</b></td><td>Gigavac high-voltage contactor portfolio (acquired 2018, originally industrial then EV); HV contactors for 800V data center applications; DC materiality currently &amp;lt;1% of sales, so multiple does not yet reflect the socket; sub-$10B mkt cap</td></tr>
 <tr><td><b>Phinia (PHIN)</b></td><td>BWA fuel-system spinoff; fuel injection for industrial gas + gas turbines tracks BWA pivot pattern</td></tr>
 <tr><td><b>Forum Energy Technologies (FET)</b></td><td>Energy-industrial valves + flow products; could pivot to industrial</td></tr>
 <tr><td><b>Capstone Green Energy (CGRN)</b></td><td>Microturbines; tiny cap; modular distributed power alternative</td></tr>
@@ -11705,6 +11824,11 @@ Methodology and source notes: $ pools derived from main datacenter_reference.htm
 
 <script>
 (function() {
+  // Force drill-downs and sources collapsed on initial page load
+  document.querySelectorAll('details.drill, details.sources-footer, details.toc-drills').forEach(function(d) {
+    d.removeAttribute('open');
+  });
+
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href^=&quot;#&quot;]');
     if (!link) return;
