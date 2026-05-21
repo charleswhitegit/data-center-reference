@@ -5254,6 +5254,40 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 <tr class=&quot;data&quot;><td>AMD MI350 / MI355X (CDNA4)</td><td>Improved CoWoS</td><td>Updated chiplet count</td><td>HBM3e / HBM4</td><td>3.5D refresh</td></tr>
 </table>
 
+<h3>10a. Third-Party Device BOM Cross-Reference (GB300 vs VR200)</h3>
+<p>Morgan Stanley Research published a per-rack device-BOM estimate (Exhibit 3, 2026) that anchors the qualitative shifts described in Sections F, G, H, and I. The figures below are device-level (what NVIDIA and its ODMs spend to build the rack), not all-in deployment cost (which adds external cooling infrastructure, power distribution upstream of the rack, busway, and facility costs covered in Sections A, B, E).</p>
+
+<table>
+<tr><th>Line item</th><th>GB300 ($)</th><th>VR200 ($)</th><th>Change</th><th>Cross-reference in our doc</th></tr>
+<tr><td>GPU</td><td>$2,520,000</td><td>$3,960,000</td><td>+57%</td><td>Section F.10 (case studies), Section D (power per chip)</td></tr>
+<tr><td>CPU</td><td>$180,000</td><td>$180,000</td><td>0%</td><td>Grace CPU stable across generations</td></tr>
+<tr><td>NVLink Switch chip</td><td>$64,800</td><td>$144,000</td><td>+122%</td><td>Section H.2 (NVLink scale-up fabric)</td></tr>
+<tr><td>Other networking chips</td><td>$261,000</td><td>$576,000</td><td>+121%</td><td>Section I (ConnectX-9, Pollara, BlueField)</td></tr>
+<tr><td><b>Memory</b></td><td>$373,939</td><td><b>$2,001,600</b></td><td><b>+435%</b></td><td>Section G.3 (HBM), G.11 (Vera Rubin case study). Largest single line increase, driven by HBM4 50%+ premium per GB + higher stack count per GPU</td></tr>
+<tr><td>Cooling (in-rack)</td><td>$64,610</td><td>$72,080</td><td>+12%</td><td>Section E. In-rack only (cold plates, manifolds); excludes CDU + facility loop covered separately</td></tr>
+<tr><td>Power supply (in-rack)</td><td>$57,600</td><td>$76,000</td><td>+32%</td><td>Section B.6 (Rack PSU). Modest per-rack growth; bigger architectural shift is 800V transition (Section B.10d)</td></tr>
+<tr><td>PCB</td><td>$35,100</td><td>$116,730</td><td>+233%</td><td><b>Now covered in Sub-Components 6.11</b></td></tr>
+<tr><td>ABF Substrate</td><td>$11,160</td><td>$20,340</td><td>+82%</td><td>Section F.4 (Ibiden, Shinko, Unimicron, Nan Ya, Kinsus)</td></tr>
+<tr><td>MLCC</td><td>$1,530</td><td>$4,320</td><td>+182%</td><td>Section F.9, Section D.8 (Murata + SEMCO ~84% AI server share)</td></tr>
+<tr><td>Others</td><td>$402,412</td><td>$623,278</td><td>+55%</td><td>Unspecified by MS; likely includes passives, magnetics, connectors</td></tr>
+<tr><td>Rack assembly value add</td><td>$22,400</td><td>$28,800</td><td>+29%</td><td>ODM assembly margin (Foxconn, Quanta, Wistron)</td></tr>
+<tr><td><b>Total (device BOM)</b></td><td><b>$3,994,551</b></td><td><b>$7,803,148</b></td><td><b>+95%</b></td><td>Roughly doubles generation-over-generation</td></tr>
+</table>
+
+<div class=&quot;callout&quot;>
+<b>Device BOM vs all-in rack deployment cost.</b> The figures above are what the rack costs to build. The all-in cost to deploy that rack inside an operational data center is materially higher and includes: external cooling infrastructure (CDUs, chillers, heat rejection from Section E.3), upstream power distribution (transformers, switchgear, UPS, busway from Sections B.1 through B.9), backup generation (Section B.13), and facility costs (Section E.7). For a Vera Rubin Ultra megawatt-rack scenario, the all-in cost can be 2-3x the device BOM depending on liquid cooling intensity and 800V architecture choices.
+</div>
+
+<div class=&quot;verify&quot;>
+<b>Where MS's numbers anchor our framework, and where they don't.</b>
+<ul>
+<li>Memory at +435% directly validates our Section G framing that HBM4 is the structural driver of the next-gen rack's cost curve.</li>
+<li>MLCC at +182% on a small absolute base (low single-digit $K) is consistent with our 440,000 MLCC per NVL72 count: ASP shifts dominate over count growth at this rack scale.</li>
+<li>PCB at +233% was a gap in our doc until this BOM exposed it. PCB is now covered in Sub-Components 6.11.</li>
+<li>&quot;Others&quot; at $623K (8% of total) is opaque. MS does not break down what falls inside. Likely candidates: passives beyond MLCC (inductors, film caps), magnetics, connectors, smaller silicon (PMICs, retimers).</li>
+</ul>
+</div>
+
 <!-- ============ 11. CROSS CUTS ============ -->
 <h2 id=&quot;section-f-h2-11-11-how-section-f-connects-to-other-secti&quot;>11. How Section F Connects to Other Sections</h2>
 <ul>
@@ -7543,7 +7577,7 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 <h2 id=&quot;section-k-h2-02-2-anatomy-of-a-modern-ai-rack&quot;>2. Anatomy of a Modern AI Rack</h2>
 <p>A 2026-era AI rack integrates seven major sub-systems. Each was historically a separate concern. Now they are co-designed.</p>
 
-<svg viewBox=&quot;0 0 1200 500&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;font-family: Calibri, sans-serif; font-size: 10pt;&quot;>
+<svg viewBox=&quot;0 0 1200 480&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;font-family: Calibri, sans-serif; font-size: 10pt;&quot;>
   <text x=&quot;14&quot; y=&quot;22&quot; font-weight=&quot;bold&quot; font-size=&quot;12&quot;>Anatomy of an NVL72-class AI rack (simplified front view)</text>
 
   <!-- Rack outline -->
@@ -7589,12 +7623,12 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 
   <!-- Left side: busbar -->
   <rect x=&quot;335&quot; y=&quot;50&quot; width=&quot;15&quot; height=&quot;390&quot; fill=&quot;#cc6600&quot; stroke=&quot;#333&quot;/>
-  <text x=&quot;262&quot; y=&quot;112&quot; text-anchor=&quot;middle&quot; font-weight=&quot;bold&quot; font-size=&quot;10&quot; fill=&quot;#cc6600&quot;>Busbar</text>
-  <text x=&quot;262&quot; y=&quot;128&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>~50V DC current</text>
-  <text x=&quot;262&quot; y=&quot;142&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>(or 800V DC in</text>
-  <text x=&quot;262&quot; y=&quot;156&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Kyber / Vera Rubin)</text>
-  <text x=&quot;262&quot; y=&quot;172&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>~110 kg of copper</text>
-  <text x=&quot;262&quot; y=&quot;186&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>(GB200)</text>
+  <text x=&quot;290&quot; y=&quot;100&quot; font-weight=&quot;bold&quot; font-size=&quot;10&quot; fill=&quot;#cc6600&quot;>Busbar</text>
+  <text x=&quot;290&quot; y=&quot;116&quot; font-size=&quot;9&quot;>~50V DC current</text>
+  <text x=&quot;290&quot; y=&quot;130&quot; font-size=&quot;9&quot;>(or 800V DC in</text>
+  <text x=&quot;290&quot; y=&quot;144&quot; font-size=&quot;9&quot;>Kyber / Vera Rubin)</text>
+  <text x=&quot;290&quot; y=&quot;160&quot; font-size=&quot;9&quot;>~110 kg of copper</text>
+  <text x=&quot;290&quot; y=&quot;174&quot; font-size=&quot;9&quot;>(GB200)</text>
 
   <!-- Right side: NVLink copper backplane -->
   <rect x=&quot;850&quot; y=&quot;120&quot; width=&quot;20&quot; height=&quot;230&quot; fill=&quot;#cccccc&quot; stroke=&quot;#333&quot;/>
@@ -7606,20 +7640,20 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
   <text x=&quot;880&quot; y=&quot;278&quot; font-size=&quot;9&quot;>>2 miles total cable</text>
 
   <!-- Sidecar power cabinet -->
-  <rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;170&quot; height=&quot;380&quot; fill=&quot;#ffe0b3&quot; stroke=&quot;#333&quot; stroke-dasharray=&quot;6,4&quot;/>
-  <text x=&quot;105&quot; y=&quot;80&quot; text-anchor=&quot;middle&quot; font-weight=&quot;bold&quot; font-size=&quot;10&quot;>Sidecar power cabinet</text>
-  <text x=&quot;105&quot; y=&quot;100&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>(adjacent rack, optional)</text>
-  <text x=&quot;105&quot; y=&quot;120&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>AC-to-DC rectification</text>
-  <text x=&quot;105&quot; y=&quot;135&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>800V DC output</text>
-  <text x=&quot;105&quot; y=&quot;150&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Battery backup</text>
-  <text x=&quot;105&quot; y=&quot;165&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Protection &amp;amp; control</text>
-  <text x=&quot;105&quot; y=&quot;185&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Eaton Beam Rubin DSX</text>
-  <text x=&quot;105&quot; y=&quot;200&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>or equivalent</text>
-  <line x1=&quot;190&quot; y1=&quot;92&quot; x2=&quot;335&quot; y2=&quot;92&quot; stroke=&quot;#cc6600&quot; stroke-width=&quot;3&quot;/>
-  <line x1=&quot;190&quot; y1=&quot;380&quot; x2=&quot;335&quot; y2=&quot;380&quot; stroke=&quot;#cc6600&quot; stroke-width=&quot;3&quot;/>
-  <text x=&quot;262&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-size=&quot;8&quot;>DC bus</text>
+  <rect x=&quot;100&quot; y=&quot;60&quot; width=&quot;180&quot; height=&quot;380&quot; fill=&quot;#ffe0b3&quot; stroke=&quot;#333&quot; stroke-dasharray=&quot;6,4&quot;/>
+  <text x=&quot;190&quot; y=&quot;80&quot; text-anchor=&quot;middle&quot; font-weight=&quot;bold&quot; font-size=&quot;10&quot;>Sidecar power cabinet</text>
+  <text x=&quot;190&quot; y=&quot;100&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>(adjacent rack, optional)</text>
+  <text x=&quot;190&quot; y=&quot;120&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>AC-to-DC rectification</text>
+  <text x=&quot;190&quot; y=&quot;135&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>800V DC output</text>
+  <text x=&quot;190&quot; y=&quot;150&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Battery backup</text>
+  <text x=&quot;190&quot; y=&quot;165&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Protection &amp;amp; control</text>
+  <text x=&quot;190&quot; y=&quot;185&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>Eaton Beam Rubin DSX</text>
+  <text x=&quot;190&quot; y=&quot;200&quot; text-anchor=&quot;middle&quot; font-size=&quot;9&quot;>or equivalent</text>
+  <line x1=&quot;280&quot; y1=&quot;92&quot; x2=&quot;335&quot; y2=&quot;92&quot; stroke=&quot;#cc6600&quot; stroke-width=&quot;3&quot;/>
+  <line x1=&quot;280&quot; y1=&quot;380&quot; x2=&quot;335&quot; y2=&quot;380&quot; stroke=&quot;#cc6600&quot; stroke-width=&quot;3&quot;/>
+  <text x=&quot;307&quot; y=&quot;86&quot; text-anchor=&quot;middle&quot; font-size=&quot;8&quot;>DC bus</text>
 
-  <text x=&quot;14&quot; y=&quot;485&quot; font-style=&quot;italic&quot; font-size=&quot;10&quot; fill=&quot;#444&quot;>Rack weight: ~1.36 tonnes (3,000 lbs). Power: 120 kW (GB200), 135-155 kW (GB300), 220-250 kW (Vera Rubin NVL72), ~600 kW (Kyber 2027), ~1 MW (Feynman 2028).</text>
+  <text x=&quot;14&quot; y=&quot;465&quot; font-style=&quot;italic&quot; font-size=&quot;10&quot; fill=&quot;#444&quot;>Rack weight: ~1.36 tonnes (3,000 lbs). Power: 120 kW (GB200), 135-155 kW (GB300), 220-250 kW (Vera Rubin NVL72), ~600 kW (Kyber 2027), ~1 MW (Feynman 2028).</text>
 </svg>
 
 <h3>2a. The Seven Sub-Systems</h3>
@@ -10078,6 +10112,7 @@ Sources and methodology notes: Per-rack pricing from HSBC analyst estimates (May
 <tr><td><b>Wire, cable, conduit</b></td><td>Building copper wire, MV/HV cable, instrumentation cable, fiber, steel conduit, raceways, cable trays</td><td>Building electrical, instrumentation, network</td></tr>
 <tr><td><b>Filtration</b></td><td>Air filters (HEPA, MERV), oil filters, fuel filters, hydraulic filters, water/coolant strainers</td><td>HVAC, engines, hydraulic systems, cooling loops</td></tr>
 <tr><td><b>Plumbing fixtures and piping</b></td><td>Copper pipe + fittings, steel pipe, PVC/CPVC, valves, water heaters, drains</td><td>Building water, fire suppression, restrooms, makeup water</td></tr>
+<tr><td><b>Electronics manufacturing</b></td><td>HDI multilayer PCB (30+ layers), low-loss laminates (Megtron, Isola, Rogers), backplane PCB, copper foil (RTF), drilling + plating equipment</td><td>Rack-level IT systems: GPU board, NVLink switch board, NIC, backplane (the in-rack signal + power carriers)</td></tr>
 </table>
 
 <!-- ============= 3. COOLING SYSTEMS ============= -->
@@ -10452,6 +10487,20 @@ Sources and methodology notes: Per-rack pricing from HSBC analyst estimates (May
 
 <h3>6.10 Engine Controls / Governor</h3>
 <p>Inside every diesel + gas engine + turbine. Top vendor: Woodward (WWD) with ~50%+ share at large industrial controls. Also ComAp, DEIF, Heinzmann. Estimated $2-5M per 100 MW DC including BWA TurboCell + gensets + larger turbines.</p>
+
+<h3>6.11 Printed Circuit Boards (HDI Multilayer, 30+ Layers)</h3>
+<p class=&quot;ref&quot;>$ per VR200 rack: ~$117K (Morgan Stanley estimate, +233% vs GB300). Per 100 MW DC: ~$5-15M (estimated from $117K/rack × ~50-130 racks per 100 MW DC range, varies by rack density). PCBs in AI servers carry signal between GPU package, NVLink switches, NIC, memory, and power tree. Higher GPU TDPs, more memory channels, and higher signal speeds (PCIe Gen6, NVLink 5.0) push PCB requirements toward higher layer counts (30+ layers), tighter impedance control, and more advanced materials (low-loss PPE, M7 grade or above). PCB content per rack growing at +233% generation-over-generation is the second-largest growth line in the VR200 BOM after memory.</p>
+
+<table>
+<tr class=&quot;scoped&quot;><th>Sub-component / spec dimension</th><th>Function / spec direction</th><th>Vendors competing for socket</th><th>Concentration</th></tr>
+<tr class=&quot;vendor-key&quot;><td>HDI multilayer PCB (30+ layers, low-loss)</td><td>GPU board, NVLink switch board; carries high-speed signal + power planes</td><td>Zhen Ding Technology (Taiwanese 4958.TW), Tripod Technology (3044.TW), Unimicron (3037.TW, also ABF), Compeq (2313.TW), TTM Technologies (TTMI, US-listed)</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
+<tr class=&quot;vendor&quot;><td>Backplane PCB</td><td>Connects compute trays via NVLink Spine</td><td>Same vendor pool as above; backplane is a specialty within HDI multilayer</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
+<tr class=&quot;vendor&quot;><td>Low-loss laminate / dielectric material</td><td>Reduces signal loss at PCIe Gen6 / NVLink 5.0 speeds</td><td>Panasonic (Megtron 8/9), Isola, Rogers (ROG, low-loss specialist), Hitachi Chemical / Resonac</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
+<tr class=&quot;vendor&quot;><td>Copper foil (high-frequency)</td><td>Conductor layers; RTF (reverse-treated foil) for high-speed</td><td>Mitsui Mining &amp;amp; Smelting, JX Nippon, Furukawa, Iljin Materials (Korean)</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
+<tr class=&quot;vendor&quot;><td>Drilling + plating equipment</td><td>Capacity-defining capex</td><td>Mitsubishi Electric, Schmoll, Han's Laser (Chinese), via formation specialists</td><td><span class=&quot;badge broad&quot;>BROAD</span></td></tr>
+</table>
+
+<p class=&quot;ref&quot;>The Taiwanese HDI PCB cluster (Zhen Ding, Tripod, Unimicron PCB division, Compeq) is the dominant supplier base, with TTM Technologies as the only US-listed pure-play. Structurally similar to ABF substrate (Reference Section F.4): a small absolute line that is growing fast in a concentrated supplier base. Cross-reference: Reference Section F.10a BOM table.</p>
 
 <!-- ============= 7. BATTLE MAP ============= -->
 <h2 id=&quot;battle&quot;>7. Auto/Industrial Pivot Battle Map</h2>
