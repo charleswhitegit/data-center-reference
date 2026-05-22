@@ -5266,7 +5266,7 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 <tr><td><b>Memory</b></td><td>$373,939</td><td><b>$2,001,600</b></td><td><b>+435%</b></td><td>Section G.3 (HBM), G.11 (Vera Rubin case study). Largest single line increase, driven by HBM4 50%+ premium per GB + higher stack count per GPU</td></tr>
 <tr><td>Cooling (in-rack)</td><td>$64,610</td><td>$72,080</td><td>+12%</td><td>Section E. In-rack only (cold plates, manifolds); excludes CDU + facility loop covered separately</td></tr>
 <tr><td>Power supply (in-rack)</td><td>$57,600</td><td>$76,000</td><td>+32%</td><td>Section B.6 (Rack PSU). Modest per-rack growth; bigger architectural shift is 800V transition (Section B.10d)</td></tr>
-<tr><td>PCB</td><td>$35,100</td><td>$116,730</td><td>+233%</td><td><b>Now covered in Sub-Components 6.11</b></td></tr>
+<tr><td>PCB</td><td>$35,100</td><td>$116,730</td><td>+233%</td><td>Sub-Components 6.11 (HDI multilayer; Zhen Ding, Tripod, Unimicron, Compeq, TTM Technologies)</td></tr>
 <tr><td>ABF Substrate</td><td>$11,160</td><td>$20,340</td><td>+82%</td><td>Section F.4 (Ibiden, Shinko, Unimicron, Nan Ya, Kinsus)</td></tr>
 <tr><td>MLCC</td><td>$1,530</td><td>$4,320</td><td>+182%</td><td>Section F.9, Section D.8 (Murata + SEMCO ~84% AI server share)</td></tr>
 <tr><td>Others</td><td>$402,412</td><td>$623,278</td><td>+55%</td><td>Unspecified by MS; likely includes passives, magnetics, connectors</td></tr>
@@ -5283,7 +5283,7 @@ Source basis: framework derived from the project files (NHF framework, Damnang a
 <ul>
 <li>Memory at +435% directly validates our Section G framing that HBM4 is the structural driver of the next-gen rack's cost curve.</li>
 <li>MLCC at +182% on a small absolute base (low single-digit $K) is consistent with our 440,000 MLCC per NVL72 count: ASP shifts dominate over count growth at this rack scale.</li>
-<li>PCB at +233% was a gap in our doc until this BOM exposed it. PCB is now covered in Sub-Components 6.11.</li>
+<li>PCB at +233% is the second-largest growth line after Memory. Coverage in Sub-Components 6.11.</li>
 <li>&quot;Others&quot; at $623K (8% of total) is opaque. MS does not break down what falls inside. Likely candidates: passives beyond MLCC (inductors, film caps), magnetics, connectors, smaller silicon (PMICs, retimers).</li>
 </ul>
 </div>
@@ -9561,14 +9561,14 @@ document.querySelectorAll('.toc-toggle').forEach(btn => {
 
 <table>
 <tr><th>Tier 1 system (in master inventory)</th><th>Tier 2 sub-components inside it</th><th>Where the Tier 2 $ goes</th></tr>
-<tr class=&quot;cool&quot;><td>Building chillers (Trane, Carrier, Mitsubishi Heavy)</td><td>Compressors, motors, heat exchangers, refrigerant valves, control panels, condenser fans</td><td>Compressors: Garrett (NEW), Danfoss, Bitzer. Motors: Regal, Nidec, ABB. HX: Alfa Laval, Modine, AAON. Controls: Honeywell, Johnson Controls.</td></tr>
+<tr class=&quot;cool&quot;><td>Building chillers (Trane, Carrier, Mitsubishi Heavy)</td><td>Compressors, motors, heat exchangers, refrigerant valves, control panels, condenser fans</td><td>Compressors: Garrett (DC product launched 2026), Danfoss, Bitzer. Motors: Regal, Nidec, ABB. HX: Alfa Laval, Modine, AAON. Controls: Honeywell, Johnson Controls.</td></tr>
 <tr class=&quot;cool&quot;><td>CDU (Vertiv, nVent, Motivair)</td><td>Pumps, plate heat exchangers, motors, control panels, sensors, valves, manifolds</td><td>Pumps: Grundfos, Flowserve, Xylem, ITT. HX: Alfa Laval, Modine. Motors: Regal, Nidec. Sensors: Sensata, AMETEK, Honeywell.</td></tr>
 <tr class=&quot;cool&quot;><td>Cooling towers / dry coolers</td><td>Fans, motors, drives, fill media, basin, water treatment, condenser coil</td><td>Fans: Regal Rexnord (Nicotra), Greenheck, Cook. Motors: Regal, Nidec. Drives: ABB, Siemens, Rockwell, Yaskawa.</td></tr>
 <tr class=&quot;cool&quot;><td>CRAH / CRAC units (Vertiv, Stulz, Schneider)</td><td>EC plug fans, dampers, controls, sensors, coil, drain pan</td><td>Fans: Regal Rexnord COPRA EC, ebm-papst. Controls: Honeywell, Schneider.</td></tr>
 <tr class=&quot;cool&quot;><td>Primary cooling loop piping</td><td>Pipe (copper, steel, PEX), valves, couplings, hangers, insulation, sensors</td><td>Pipe: Mueller, Aquatherm, Victaulic. Valves: Watts, Emerson, Flowserve, Pentair. Couplings: Victaulic, Georg Fischer.</td></tr>
 <tr class=&quot;power&quot;><td>UPS (Vertiv, Schneider, Eaton)</td><td>Rectifier semiconductors, inverter IGBT, transformer, capacitors, batteries, cooling fans, controls</td><td>Batteries: LG ES, Samsung SDI, Panasonic. IGBT: Infineon, Mitsubishi, Hitachi. Caps: Murata, TDK, KEMET. Cooling fans: Regal, Delta. Controls: TI, ADI.</td></tr>
 <tr class=&quot;power&quot;><td>Diesel generators (Cummins, CAT, Kohler)</td><td>Engine, alternator, fuel system, cooling radiator, controls, exhaust treatment, enclosure</td><td>Alternators: Marathon (Regal-owned), Stamford-MECC (Cummins). Controls: Woodward, ComAp. Engines: in-house OEM.</td></tr>
-<tr class=&quot;power&quot;><td>Gas turbines (GE Vernova, Siemens, Mitsubishi Power)</td><td>Turbomachinery, combustor, alternator, fuel system, controls, lube oil, cooling system</td><td>Smaller turbines: BorgWarner TurboCell (NEW). Controls: Woodward. Alternators: ABB, Brush. Most large turbines integrated.</td></tr>
+<tr class=&quot;power&quot;><td>Gas turbines (GE Vernova, Siemens, Mitsubishi Power)</td><td>Turbomachinery, combustor, alternator, fuel system, controls, lube oil, cooling system</td><td>Smaller turbines: BorgWarner TurboCell (2027 SOP). Controls: Woodward. Alternators: ABB, Brush. Most large turbines integrated.</td></tr>
 <tr class=&quot;power&quot;><td>EHV transformer (Hitachi, Siemens, Hyosung)</td><td>Core (GOES), windings (copper), bushings, tap changer, cooling fans + oil pumps, tank, control cabinet</td><td>GOES: Cleveland-Cliffs, Nippon Steel, POSCO. Bushings: PFISTERER, Trench. Tap changer: MR Reinhausen 60-70%. Cooling fans: Regal, Pelonis.</td></tr>
 <tr class=&quot;power&quot;><td>MV/HV switchgear (Eaton, ABB, Schneider, Powell)</td><td>Vacuum/SF6 breakers, CT/PT, relays, busbar, mechanism motors, cabinet steel</td><td>Breakers: OEM-internal. Relays: SEL, GE Multilin, ABB. Busbar copper: Wieland, Luvata. Mech motors: Regal, Nidec.</td></tr>
 <tr class=&quot;building&quot;><td>Building MEP (HVAC for non-data-hall spaces)</td><td>RTUs, AHUs, exhaust fans, dampers, sensors, BMS controllers, wiring</td><td>RTU/AHU: AAON, Lennox, Carrier, Trane, Daikin. BMS: Honeywell, Johnson Controls, Siemens, Schneider.</td></tr>
@@ -9611,7 +9611,7 @@ document.querySelectorAll('.toc-toggle').forEach(btn => {
 <h4>Compressors and Fans</h4>
 <table>
 <tr><th>Vendor</th><th>Position</th><th>DC exposure</th></tr>
-<tr class=&quot;tier2&quot;><td>Garrett Motion (GTX)</td><td>Oil-free centrifugal compressors (NEW DC product April 2026); auto turbocharger background</td><td>Confirmed DC + BESS cooling pivot</td></tr>
+<tr class=&quot;tier2&quot;><td>Garrett Motion (GTX)</td><td>Oil-free centrifugal compressors (DC product launched April 2026); auto turbocharger background</td><td>Confirmed DC + BESS cooling pivot</td></tr>
 <tr class=&quot;tier2&quot;><td>Danfoss (private, Danish)</td><td>Turbocor oil-free centrifugal compressors (dominant in DC chillers)</td><td>Embedded in Trane, Carrier chillers</td></tr>
 <tr class=&quot;tier2&quot;><td>Bitzer (private, German)</td><td>Reciprocating + screw compressors</td><td>Chiller OEM supply</td></tr>
 <tr class=&quot;tier2&quot;><td>Greenheck (private)</td><td>Industrial fans (centrifugal, vaneaxial)</td><td>Air movement</td></tr>
@@ -9700,7 +9700,7 @@ document.querySelectorAll('.toc-toggle').forEach(btn => {
 <h4>Generators, Engines, Alternators, Turbomachinery</h4>
 <table>
 <tr><th>Vendor</th><th>Position</th><th>DC exposure</th></tr>
-<tr class=&quot;tier2&quot;><td>BorgWarner (BWA)</td><td>TurboCell modular turbine generator system (NEW, MSA Feb 2026, 2 GW from 2027); core: turbo + thermal + power electronics + high-speed rotating</td><td>Confirmed primary-power pivot via Endeavour/TurboCell</td></tr>
+<tr class=&quot;tier2&quot;><td>BorgWarner (BWA)</td><td>TurboCell modular turbine generator system (MSA signed Feb 2026, 2 GW from 2027); core: turbo + thermal + power electronics + high-speed rotating</td><td>Confirmed primary-power pivot via Endeavour/TurboCell</td></tr>
 <tr class=&quot;tier2&quot;><td>Garrett Motion (GTX)</td><td>Air bearing turbocompressors + electric compressors for fuel cell BoP; data center cooling debut April 2026</td><td>Confirmed cooling + adjacent fuel cell pivot</td></tr>
 <tr class=&quot;tier2&quot;><td>Woodward (WWD)</td><td>Engine controls and fuel systems for turbines and reciprocating engines</td><td>Embedded in gas turbines, generators</td></tr>
 <tr class=&quot;tier2&quot;><td>Wartsila (Finnish)</td><td>Reciprocating engines (gas + diesel); flexible peakers</td><td>Hyperscaler bridge/peaker plays</td></tr>
@@ -10124,7 +10124,7 @@ Sources and methodology notes: Per-rack pricing from HSBC analyst estimates (May
 
 <table>
 <tr class=&quot;cool&quot;><th>Sub-component</th><th>Function</th><th>% of chiller cost</th><th>Vendors competing for socket</th><th>Concentration</th></tr>
-<tr class=&quot;vendor-key&quot;><td>Centrifugal compressor (oil-free, magnetic bearing)</td><td>Compresses refrigerant vapor; heart of the chiller</td><td class=&quot;pct&quot;><span class=&quot;pctbar&quot; style=&quot;width:70px&quot;></span>25-30%</td><td>Danfoss Turbocor (dominant in oil-free), Garrett Motion oil-free centrifugal (NEW April 2026), in-house OEM Trane/Carrier/JCI for lubricated designs</td><td><span class=&quot;badge oligo&quot;>OLIGO</span> shifting to magnetic-bearing oil-free</td></tr>
+<tr class=&quot;vendor-key&quot;><td>Centrifugal compressor (oil-free, magnetic bearing)</td><td>Compresses refrigerant vapor; heart of the chiller</td><td class=&quot;pct&quot;><span class=&quot;pctbar&quot; style=&quot;width:70px&quot;></span>25-30%</td><td>Danfoss Turbocor (dominant in oil-free), Garrett Motion oil-free centrifugal (launched April 2026), in-house OEM Trane/Carrier/JCI for lubricated designs</td><td><span class=&quot;badge oligo&quot;>OLIGO</span> shifting to magnetic-bearing oil-free</td></tr>
 <tr class=&quot;vendor&quot;><td>Compressor motor (often integrated)</td><td>Drives the compressor; high-speed permanent magnet</td><td class=&quot;pct&quot;><span class=&quot;pctbar&quot; style=&quot;width:25px&quot;></span>8-12%</td><td>Integrated with Danfoss/Garrett compressor; or Regal Rexnord, Nidec, ABB, Siemens for separate-motor designs</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
 <tr class=&quot;vendor&quot;><td>VFD (Variable Frequency Drive)</td><td>Adjusts compressor speed to part-load</td><td class=&quot;pct&quot;><span class=&quot;pctbar&quot; style=&quot;width:18px&quot;></span>5-8%</td><td>ABB ACS series, Siemens Sinamics, Yaskawa, Rockwell PowerFlex, Schneider Altivar</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
 <tr class=&quot;vendor&quot;><td>Evaporator (shell-and-tube HX)</td><td>Refrigerant boils, cools chilled water side</td><td class=&quot;pct&quot;><span class=&quot;pctbar&quot; style=&quot;width:35px&quot;></span>10-15%</td><td>Mostly in-house OEM; brazed copper tubes from Wieland, Mueller</td><td><span class=&quot;badge oligo&quot;>OLIGO</span></td></tr>
@@ -10301,7 +10301,7 @@ Sources and methodology notes: Per-rack pricing from HSBC analyst estimates (May
 
 <!-- ----- 4.4 GAS TURBINE PRIMARY ----- -->
 <h3>4.4 Gas Turbine Primary Power (On-Site Behind-the-Meter, 30-100+ MW unit)</h3>
-<p class=&quot;ref&quot;>$ per 100 MW DC (if used): ~$80-180M. Tier 1 OEMs: GE Vernova (LM6000/9F), Siemens Energy (SGT-A/SGT5), Mitsubishi Power (M501J), Wartsila (for reciprocating gas peakers). BorgWarner TurboCell (NEW Feb 2026) targets the smaller modular end (1-10 MW per unit, scalable).</p>
+<p class=&quot;ref&quot;>$ per 100 MW DC (if used): ~$80-180M. Tier 1 OEMs: GE Vernova (LM6000/9F), Siemens Energy (SGT-A/SGT5), Mitsubishi Power (M501J), Wartsila (for reciprocating gas peakers). BorgWarner TurboCell (MSA signed Feb 2026) targets the smaller modular end (1-10 MW per unit, scalable).</p>
 
 <table>
 <tr class=&quot;power&quot;><th>Sub-component</th><th>Function</th><th>% of turbine cost</th><th>Vendors competing for socket</th><th>Concentration</th></tr>
